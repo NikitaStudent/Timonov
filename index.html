@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сортировка вещественных чисел</title>
+    <script type="text/javascript">
+        function SearchMax(ArrayNum){
+            var maxindex = 0;
+            for(let i = 1; i < ArrayNum.length; i++)
+                if(ArrayNum[maxindex] < ArrayNum[i])
+                    maxindex = i;
+            return maxindex;
+        }
+        function SearchMin(ArrayNum) {
+            var minindex = 0;
+            for(let i = 1; i < ArrayNum.length;i++)
+                if(ArrayNum[minindex]>ArrayNum[i])
+                    minindex = i;
+            return minindex;
+        }
+    </script>
+</head>
+<body>
+<h2>Поиск максимума и минимума в исходном массиве</h2>
+<h3><slovo style="color: Gray">Серый</slovo> - минимум, <slovo style="color:Gold">Золотой</slovo> - максимум</h3>
+<p>Введите числа через запятую!</p>
+<input id="ArrayNum" type="text" >
+<button onclick="Sorting()">Сортировать</button>
+<h3 id="ArrayNumSort"></h3>
+<script type="text/javascript">
+    function Sorting() {
+        var ArrayNum = document.getElementById('ArrayNum');
+        var ArrayNumSort = document.getElementById('ArrayNumSort');
+        ArrayNumSort.innerHTML = "";
+        ArrayNum = ArrayNum.value.split(',');
+        for (let i = 0; i < ArrayNum.length; i++) {
+            ArrayNum[i] = Number(ArrayNum[i]);
+        }
+        var maxIndex = SearchMax(ArrayNum);
+        var minIndex = SearchMin(ArrayNum);
+        for (let i = 0; i < ArrayNum.length; i++) {
+            let Float = "";
+            if (i == minIndex)
+                Float = "<float style=\"color:Gray\">" + ArrayNum[i] + "</float><br>";
+            else if (i == maxIndex)
+                Float = "<float style=\"color: Gold\">" + ArrayNum[i] + "</float><br>";
+            else
+                Float = "<float>" + ArrayNum[i] + "</float><br>";
+            ArrayNumSort.innerHTML += Float;
+        }
+    }
+    Sorting();
+</script>
+</body>
+</html>
